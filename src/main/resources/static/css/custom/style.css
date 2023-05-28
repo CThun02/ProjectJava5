@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body{
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
+/*common*/
+.btn-pink-rgba{
+    background: #fbceb5 !important;
+    border: 1px solid #fbceb5 !important;
+    color: #000 !important;
+}
+
+.btn-pink-rgba:hover{
+    opacity: 0.7;
+}
+
+/*login*/
+.bg-login{
+    height: 100vh;
+    background-image: url("/assets/img/bg/bg-login.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.btn-login{
+    width: 200px;
+    border-radius: 20px;
+    height: 38px;
+}
+.login-form{
+    padding-top: 20vh;
+}
