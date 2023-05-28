@@ -7,7 +7,6 @@
 </head>
 <body>
 <header>
-    <h4 class="text-center">Header website</h4>
 </header>
 <section></section>
 <footer>

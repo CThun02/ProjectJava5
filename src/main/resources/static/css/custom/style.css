@@ -32,3 +32,33 @@ body{
 .login-form{
     padding-top: 20vh;
 }
+
+/*admin header*/
+.brand{
+    height: 70px;
+    padding-top: 18px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+.nav-menu{
+    background: #CD5555;
+    height: 100vh;
+}
+.nav-item{
+    list-style: none;
+}
+.nav-item a{
+    text-decoration: none;
+}
+.nav-item a li {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+}
+.nav-item a:hover li{
+    background: #fbceb5;
+}
