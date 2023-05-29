@@ -41,7 +41,7 @@ body{
     border-bottom: 1px solid white;
 }
 .nav-menu{
-    background: #CD5555;
+    background: #df453e;
     height: 100vh;
 }
 .nav-item{
@@ -59,6 +59,24 @@ body{
     font-weight: bold;
     border-bottom: 1px solid white;
 }
-.nav-item a:hover li{
-    background: #fbceb5;
+.nav-item a:hover li, .btn-functions-admin .btn-function:hover{
+    background: #b62d25;
+}
+
+/*admin common*/
+.btn-functions-admin{
+    margin: 64px 0;
+}
+
+.btn-functions-admin .btn-function{
+    text-align: center;
+    padding: 64px 0;
+    border-radius: 40px;
+    background: #df453e;
+}
+
+.btn-functions-admin a{
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
 }

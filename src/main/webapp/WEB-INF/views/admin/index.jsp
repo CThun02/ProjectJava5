@@ -37,15 +37,16 @@
     <section class="col-2 float-start nav-menu">
         <h3 class="text-center brand">Diablog</h3>
         <ul class="nav-item ms-0 ps-0 mt-5">
-            <a href=""><li>Cửa hàng</li></a>
-            <a href=""><li>Nhân viên</li></a>
-            <a href=""><li>Sản phẩm</li></a>
+            <a href="/admin/shop"><li>Cửa hàng</li></a>
+            <a href="/admin/staff"><li>Nhân viên</li></a>
+            <a href="/admin/product"><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
         </ul>
     </section>
+    <jsp:include page="functionmain.jsp" />
 </section>
 <footer class="col-10 float-end ms-0">
     <h4 class="text-center">footer website</h4>
