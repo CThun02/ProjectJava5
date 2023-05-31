@@ -10,23 +10,19 @@
 <header class="col-10 offset-md-4 float-end ms-0">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Order</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="#">Notice</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -37,16 +33,16 @@
     <section class="col-2 float-start nav-menu">
         <h3 class="text-center brand">Diablog</h3>
         <ul class="nav-item ms-0 ps-0 mt-5">
-            <a href="/admin/shop"><li>Cửa hàng</li></a>
-            <a href="/admin/staff"><li>Nhân viên</li></a>
-            <a href="/admin/product"><li>Sản phẩm</li></a>
+            <a href="/admin/shop/data"><li>Cửa hàng</li></a>
+            <a href="/admin/staff/data"><li>Nhân viên</li></a>
+            <a href="/admin/product/data"><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
         </ul>
     </section>
-    <jsp:include page="../framefunctionadmin.jsp" />
+    <jsp:include page="framefunctionadmin.jsp" />
 </section>
 <footer class="col-10 float-end ms-0">
     <h4 class="text-center">footer website</h4>

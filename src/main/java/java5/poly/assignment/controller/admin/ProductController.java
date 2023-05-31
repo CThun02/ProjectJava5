@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/shop")
-public class ShopController {
+@RequestMapping("/admin/product")
+public class ProductController {
     @GetMapping("/data")
     public String adminIndex(Model model){
         model.addAttribute("view", "framedataobject.jsp");
-        model.addAttribute("linkobject", "/admin/shop");
+        model.addAttribute("linkobject", "/admin/product");
         return "admin/index";
     }
     @GetMapping("/create")
     public String adminAdd(Model model){
         model.addAttribute("view", "frameaddobject.jsp");
-        model.addAttribute("linkobject", "/admin/shop");
+        model.addAttribute("linkobject", "/admin/product");
         return "admin/index";
     }
 
     @ModelAttribute("nameobject")
     public String getNameObject(){
-        return "Cửa Hàng";
+        return "Sản Phẩm";
     }
 }

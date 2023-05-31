@@ -3,12 +3,12 @@
     <div class="container">
         <div class="row">
             <div class="col-6 mb-5 ">
-                <a href="/admin/shop/data" class="button-67 check-data-select">
+                <a href="${linkobject}/data" class="button-67 check-data-select">
                     Dữ Liệu ${nameobject}
                 </a>
             </div>
             <div class="col-6 mb-5 ">
-                <a href="/admin/shop/create" class="button-67 check-add-select">
+                <a href="${linkobject}/create" class="button-67 check-add-select">
                     Thêm ${nameobject}
                 </a>
             </div>
