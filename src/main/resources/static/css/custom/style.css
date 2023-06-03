@@ -42,7 +42,8 @@ body{
 }
 .nav-menu{
     background: #df453e;
-    height: 100%;
+    min-height: 100%;
+    max-height: 200%;
 }
 .nav-item{
     list-style: none;

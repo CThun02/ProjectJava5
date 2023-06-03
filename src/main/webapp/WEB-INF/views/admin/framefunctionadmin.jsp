@@ -14,6 +14,5 @@
             </div>
         </div>
     </div>
-    <jsp:include page="${view}"></jsp:include>
-
+    <jsp:include page="${viewadmin}" />
 </section>

@@ -36,7 +36,7 @@
             <a href="/admin/shop/data"><li>Cửa hàng</li></a>
             <a href="/admin/staff/data"><li>Nhân viên</li></a>
             <a href="/admin/product/data"><li>Sản phẩm</li></a>
-            <a href=""><li>Sản phẩm</li></a>
+            <a href="/admin/category/data"><li>Loại sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>
