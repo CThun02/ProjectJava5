@@ -18,8 +18,8 @@ public class Account {
     @Column(name="username")
     private String userName;
 
-    @Column(name = "password")
-    private String passWord;
+    @Column(name = "pass")
+    private String pass;
 
     @Column(name = "fullname")
     private String fullName;
@@ -36,4 +36,4 @@ public class Account {
     @Column(name = "adm")
     private Boolean ADM;
 
-}
+ }

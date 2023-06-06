@@ -17,20 +17,24 @@ body{
 }
 
 /*login*/
-.bg-login{
+.bg-login, .bg-signin{
     height: 100vh;
     background-image: url("/assets/img/bg/bg-login.jpg");
     background-size: cover;
     background-position: center center;
     background-color: rgba(0, 0, 0, 0.6);
 }
-.btn-login{
+.btn-login, .btn-signin{
     width: 200px;
     border-radius: 20px;
     height: 38px;
 }
 .login-form{
     padding-top: 20vh;
+}
+
+.signin-form{
+    padding-top: 10vh;
 }
 
 /*admin header*/
@@ -66,7 +70,7 @@ body{
 
 /*admin common*/
 .btn-functions-admin{
-    margin: 64px 0;
+    padding: 64px 0;
 }
 .button-67 {
     width: max-content;

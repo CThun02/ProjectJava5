@@ -19,7 +19,7 @@
                     <label>Số lương tồn</label>
                     <form:input type="number" class="form-control"  id="" path="soLuongTon"/>
                     <label>IMG</label><br>
-                    <img src="${img}" alt="" style="max-width: 200px" srcset="">
+                    <img src="data:image/jpeg;base64,${product.getIMGByteStream()}" alt="" style="max-width: 200px" srcset="">
                     <input type="file" class="form-control"  id="" name="imgUpload"/>
                 </div>
                 <label>Loại</label>

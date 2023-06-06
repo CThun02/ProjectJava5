@@ -22,7 +22,7 @@
                         <a class="nav-link" href="#">Notice</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="/account/login">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -33,8 +33,8 @@
     <section class="col-2 float-start nav-menu">
         <h3 class="text-center brand">Diablog</h3>
         <ul class="nav-item ms-0 ps-0 mt-5">
-            <a href="/admin/shop/data"><li>Cửa hàng</li></a>
-            <a href="/admin/staff/data"><li>Nhân viên</li></a>
+            <a href="/admin/shop/data"><li>Khách hàng</li></a>
+            <a href="/admin/staff/data"><li>Hóa đơn</li></a>
             <a href="/admin/product/data"><li>Sản phẩm</li></a>
             <a href="/admin/category/data"><li>Loại sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>

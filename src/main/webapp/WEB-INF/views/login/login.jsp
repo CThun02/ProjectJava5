@@ -14,17 +14,20 @@
             <h3 class="text-center mb-5">
                 Login to continue
             </h3>
-            <form action="" method="post">
+            <form action="/account/login" method="post">
                 <label for="account">Account</label>
                 <input class="form-control" type="text" id="account" name="account" placeholder="Enter your account">
                 <label for="password">Password</label>
                 <input class="form-control" type="password" id="password" name="account" placeholder="Enter your password">
-                <input type="checkbox" class="form-check-input" name="" id="remem">
-                <label for="remem">remember me?</label>
+                <div>
+                    <input type="checkbox" class="form-check-input" name="" id="remem">
+                    <label for="remem">remember me?</label>
+                    <a href="/account/forgotpass" class="float-end link-dark">Forgot password?</a>
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn-pink-rgba btn-login">Login</button>
                 </div>
-                <p class="text-center">or <a href="" class="link-dark">sign in</a></p>
+                <p class="text-center">or <a href="/account/signin" class="link-dark">sign in</a></p>
             </form>
         </div>
     </section>

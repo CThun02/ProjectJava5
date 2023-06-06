@@ -1,5 +1,6 @@
 package java5.poly.assignment.service.ServiceImpl;
 
+import java5.poly.assignment.model.Category;
 import java5.poly.assignment.model.Product;
 import java5.poly.assignment.repository.RepoI.ProductRepositoryDAO;
 import java5.poly.assignment.service.ServiceI.ProductServiceI;
@@ -53,8 +54,21 @@ public class ProductService implements ProductServiceI {
     }
 
     @Override
-    public Page<Product> getProductsbyPrice(BigDecimal pricemin, BigDecimal pricemax, int pageNumber, int pagesize) {
+    public Page<Product> getProductsbyPrice(Double pricemin, Double pricemax, int pageNumber, int pagesize) {
         Pageable page = PageRequest.of(pageNumber, pagesize);
-        return repo.findAllByPrice(pricemin, pricemax, page);
+        return repo.findByGiaBetween(pricemin, pricemax, page);
     }
+
+    @Override
+    public Page<Product> getProductsbyName(String name, int pageNumber, int pageSize) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return repo.findAllByName(name, page);
+    }
+
+    @Override
+    public Page<Product> findProductsByCategory(Category category, int pageNumber, int pageSize) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return repo.findProductsByCategory(category, page);
+    }
+
 }
