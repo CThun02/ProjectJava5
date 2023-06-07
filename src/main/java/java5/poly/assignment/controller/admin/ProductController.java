@@ -3,6 +3,7 @@ package java5.poly.assignment.controller.admin;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java5.poly.assignment.model.Category;
 import java5.poly.assignment.model.Product;
 import java5.poly.assignment.service.ServiceI.CategoryServicel;
@@ -12,8 +13,10 @@ import java5.poly.assignment.service.ServiceImpl.ProductService;
 import java5.poly.assignment.ulities.CookieUlities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -69,9 +72,18 @@ public class ProductController {
     }
 
     @GetMapping("/data")
-    public String index(Model model, @RequestParam(value = "pagenumber", defaultValue = "0") int pageNumber){
+    public String index(Model model, @RequestParam(value = "pagenumber", defaultValue = "0") int pageNumber, @RequestParam(name = "sort",defaultValue = "gia,asc")String sort){
+        String[] sortPram = sort.split(",");
+        String sortName = sortPram[0];
+        Sort.Direction sortDirection;
+        if(sortPram[1].equals("asc")){
+            sortDirection = Sort.Direction.ASC;
+        }else{
+            sortDirection = Sort.Direction.DESC;
+        }
+        Sort sortA = Sort.by(sortDirection, sortName);
         List<Product> products;
-        Page<Product> productData = service.getProducts(pageNumber, 5);
+        Page<Product> productData = service.getProducts(pageNumber, 5, sortA);
         pageTotal = productData.getTotalPages();
         products = productData.getContent();
         indexLocation = 0;
@@ -90,7 +102,13 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute("product") Product product, @RequestParam("imgUpload") MultipartFile file){
+    public String create(@ModelAttribute("product")@Valid Product product, BindingResult result,
+                         @RequestParam("imgUpload") MultipartFile file, Model model){
+        if(result.hasErrors()){
+            model.addAttribute("viewadmin", "product/formproduct.jsp");
+            model.addAttribute("functionname", "Create");
+            return "admin/index";
+        }
         if (!file.isEmpty()) {
             try {
                 String fileName = file.getOriginalFilename();
@@ -123,7 +141,16 @@ public class ProductController {
     }
 
     @PostMapping("/update")
-    public String updateDB(@ModelAttribute("product") Product product, @RequestParam("id") UUID id, @RequestParam("imgUpload")MultipartFile file) throws ParseException {
+    public String updateDB(@ModelAttribute("product") @Valid Product product, BindingResult result, @RequestParam("id") UUID id,
+                           @RequestParam("imgUpload")MultipartFile file, Model model) throws ParseException {
+        if(result.hasErrors()){
+            model.addAttribute("viewadmin", "product/formproduct.jsp");
+            model.addAttribute("functionname", "Update");
+            model.addAttribute("url", "/admin/product/update?id=" + product.getID());
+            model.addAttribute("functionname", "Update");
+            model.addAttribute("product", product);
+            return "admin/index";
+        }
         Product productOld = service.getOne(id);
         product.setID(id);
         if (!file.isEmpty()) {

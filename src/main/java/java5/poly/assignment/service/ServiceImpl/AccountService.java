@@ -37,7 +37,13 @@ public class AccountService implements AccountServiceI {
     }
 
     @Override
-    public Account getOne(UUID id) {
-        return null;
+    public Account getOne(String userName) {
+        try {
+            Account account = repo.getAccountByUserName(userName);
+            return account;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

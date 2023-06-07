@@ -42,11 +42,21 @@
                 <thead>
                 <tr>
                     <th scope="col">IMG</th>
-                    <th scope="col">MÃ</th>
-                    <th scope="col">TÊN</th>
-                    <th scope="col">GIÁ</th>
-                    <th scope="col">NGÀY TẠO</th>
-                    <th scope="col">SỐ LƯỢNG</th>
+                    <th scope="col">MÃ <br>
+                        <a href="/admin/product/data?sort=ma,asc" class="link-dark">⏫</a>
+                        <a href="/admin/product/data?sort=ma,desc" class="link-dark">⏬</a></th>
+                    <th scope="col">TÊN <br>
+                        <a href="/admin/product/data?sort=ten,asc" class="link-dark">⏫</a>
+                        <a href="/admin/product/data?sort=ten,desc" class="link-dark">⏬</a></th>
+                    <th scope="col">GIÁ <br>
+                        <a href="/admin/product/data?sort=gia,asc" class="link-dark">⏫</a>
+                        <a href="/admin/product/data?sort=gia,desc" class="link-dark">⏬</a></th>
+                    <th scope="col">NGÀY TẠO <br>
+                        <a href="/admin/product/data?sort=ngayTao,asc" class="link-dark">⏫</a>
+                        <a href="/admin/product/data?sort=ngayTao,desc" class="link-dark">⏬</a></th>
+                    <th scope="col">SỐ LƯỢNG <br>
+                        <a href="/admin/product/data?sort=soLuongTon,asc" class="link-dark">⏫</a>
+                        <a href="/admin/product/data?sort=soLuongTon,desc" class="link-dark">⏬</a></th>
                     <th scope="col">Loại</th>
                     <th scope="col">ACTION</th>
                 </tr>

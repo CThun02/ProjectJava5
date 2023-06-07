@@ -1,10 +1,13 @@
 package java5.poly.assignment.controller;
 
 import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
 import java5.poly.assignment.model.Account;
 import java5.poly.assignment.service.ServiceI.AccountServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,13 +37,32 @@ public class AccountController {
         return "login/login";
     }
 
+    @PostMapping ("/login")
+    public String login(@RequestParam("userName")String userName, @RequestParam("pass")String pass, Model model){
+        Account account = service.getOne(userName);
+        if(account==null){
+            model.addAttribute("mess", "Sai tai khoan hoạc mat khau!");
+            return "login/login";
+        }else{
+            if(account.getPass().equalsIgnoreCase(pass)){
+                return "redirect:/admin/product/data";
+            }
+            model.addAttribute("mess", "Sai tai khoan hoạc mat khau!");
+            return "login/login";
+        }
+    }
+
     @GetMapping("/signin")
     public String signinForm(){
         return "login/sign";
     }
 
     @PostMapping("/signin")
-    public String signin(@ModelAttribute("account") Account account, @RequestParam() MultipartFile fileUpload){
+    public String signin(@ModelAttribute("account") @Valid Account account, BindingResult result,
+                         @RequestParam() MultipartFile fileUpload){
+        if(result.hasErrors()){
+            return "login/sign";
+        }
         if (!fileUpload.isEmpty()) {
             try {
                 String fileName = fileUpload.getOriginalFilename();
@@ -52,7 +74,7 @@ public class AccountController {
                     file.mkdirs();
                 }
                 fileUpload.transferTo(file);
-                account.setPhoto("file/img/account"+File.separator+datenow+"_"+fileName);
+                account.setPhoto(context.getRealPath("file/img/account"+File.separator+datenow+"_"+fileName));
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -17,12 +17,16 @@
             <form:form action="/account/signin" method="post" enctype="multipart/form-data" modelAttribute="account">
                 <label for="account">Account</label>
                 <form:input class="form-control" type="text" id="account" placeholder="Enter your account" path="userName"/>
+                <form:errors path="userName" delimiter="\n" element="div" cssClass="text-danger"></form:errors>
                 <label for="password">Password</label>
                 <form:input class="form-control" type="password" id="password" placeholder="Enter your password" path="pass"/>
+                <form:errors path="pass" delimiter="\n" element="div" cssClass="text-danger"></form:errors>
                 <label for="fullname">Fullname</label>
                 <form:input class="form-control" type="text" id="fullname" placeholder="Enter your name" path="fullName"/>
+                <form:errors path="fullName" delimiter="\n" element="div" cssClass="text-danger"></form:errors>
                 <label for="email">Email</label>
                 <form:input class="form-control" type="text" id="email" placeholder="Enter your email" path="email"/>
+                <form:errors path="email" delimiter="\n" element="div" cssClass="text-danger"></form:errors>
                 <label for="photo">Photo</label>
                 <form:input class="form-control" type="file" id="photo" name="fileUpload" path=""/>
                 <div class="text-center mt-3">

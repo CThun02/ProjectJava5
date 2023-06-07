@@ -1,10 +1,10 @@
 package java5.poly.assignment.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import java.io.*;
@@ -19,7 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
+public @Data
+class Product implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -27,25 +28,33 @@ public class Product implements Serializable {
     private UUID ID;
 
     @Column(name = "ma")
+    @NotBlank
     private String ma;
 
     @Column(name = "ten")
+    @NotBlank
     private String ten;
 
     @Column(name = "img")
     private String img;
 
     @Column(name = "gia")
+    @Min(value = 1)
+    @NotNull
     private BigDecimal gia;
 
     @Temporal(TemporalType.DATE)
+    @NotNull
     private LocalDate ngayTao;
 
     @Column(name = "soLuongTon")
-    private int soLuongTon;
+    @Min(value = 1)
+    @NotNull
+    private Integer soLuongTon;
 
     @ManyToOne
     @JoinColumn(name = "idCate")
+    @NotNull
     private Category category;
 
     public String getIMGByteStream() {

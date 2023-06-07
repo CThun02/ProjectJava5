@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 @Repository
-public interface AccountRepositoryDAO extends JpaRepository<Account, UUID> {
+public interface AccountRepositoryDAO extends JpaRepository<Account, String> {
+    public Account getAccountByUserName(String username);
 }

@@ -10,5 +10,5 @@ public interface AccountServiceI {
     public Account update(Account account);
     public void delete(Account account);
     public List<Account> getList();
-    public Account getOne(UUID id);
+    public Account getOne(String user);
 }
