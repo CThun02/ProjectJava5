@@ -11,8 +11,7 @@ public class MessageErrorsConfig {
     public MessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource ms
                 = new ReloadableResourceBundleMessageSource();
-        ms.setBasenames("classpath:message_errors/product");
-        ms.setBasenames("classpath:message_errors/account");
+        ms.setBasenames("classpath:message_errors/product", "classpath:message_errors/account");
         ms.setDefaultEncoding("utf-8");
         return ms;
     }

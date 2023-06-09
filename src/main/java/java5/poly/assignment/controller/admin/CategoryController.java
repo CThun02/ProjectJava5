@@ -1,5 +1,6 @@
 package java5.poly.assignment.controller.admin;
 
+import jakarta.validation.Valid;
 import java5.poly.assignment.model.Category;
 import java5.poly.assignment.service.ServiceImpl.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,6 @@ public class CategoryController {
     public String update(@RequestParam("id")UUID id){
         Category category = service.getOne(id);
         service.delete(category);
-        return "redirect:/category/data";
+        return "redirect:/admin/category/data";
     }
 }

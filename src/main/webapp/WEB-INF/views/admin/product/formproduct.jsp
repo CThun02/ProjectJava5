@@ -24,7 +24,7 @@
                     <form:input type="number" class="form-control"  id="" path="soLuongTon"/>
                     <form:errors path="soLuongTon" delimiter="\n" element="div" cssClass="text-danger"></form:errors>
                     <label>IMG</label><br>
-                    <img src="data:image/jpeg;base64,${product.getIMGByteStream()}" alt="" style="max-width: 200px" srcset="">
+                    <img src="data:image/jpeg;base64,${ImageUlities.getImgByteBase64(product.img)}" alt="" style="max-width: 200px" srcset="">
                     <input type="file" class="form-control"  id="" name="imgUpload"/>
                 </div>
                 <label>Loại</label>

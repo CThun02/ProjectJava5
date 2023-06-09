@@ -3,7 +3,7 @@ var checkBtnAddAdmin = document.getElementsByClassName("check-add-select");
 var href = location.href;
 
 window.onload = function (){
-    if(href.includes("data")||href.includes("search")||href.includes("filter")){
+    if((href.includes("data")||href.includes("search")||href.includes("filter"))&&(href.includes("admin"))){
         checkBtnDataAdmin[0].classList.add("hover");
         checkBtnAddAdmin[0].classList.remove(("hover"));
     }else if(href.includes("create")){
@@ -17,6 +17,10 @@ window.onload = function (){
         let navMenu = document.getElementsByClassName("nav-menu")[0];
         let totalHeight = heightAdminFunction.offsetHeight + heightAminFooter.offsetHeight + heightAminHeader.offsetHeight
         navMenu.style.height = totalHeight;
+    }
+    if(href!=="http://localhost:8080/"){
+        let headerUserHome = document.getElementsByClassName("home-nav")[0];
+        headerUserHome.classList.add("bg-cl-red");
     }
 }
 
@@ -62,4 +66,16 @@ closeViewSearch = function () {
     viewSelectSearch.classList.remove("d-none");
     viewSearch.classList.add("d-none")
 }
+
+window.addEventListener('scroll', function() {
+    let isHome = href=="http://localhost:8080/";
+    let headerUserHome = document.getElementsByClassName("home-nav")[0];
+    if(isHome){
+        if(document.documentElement.scrollTop == 0 && document.body.scrollTop == 0){
+            headerUserHome.classList.remove("bg-cl-red");
+        }else{
+            headerUserHome.classList.add("bg-cl-red");
+        }
+    }
+});
 

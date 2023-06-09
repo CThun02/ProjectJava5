@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="col-10 offset-md-1">
+<div class="col-11 ms-5">
     <h4 class="text-center mb-5">Dữ liệu ${nameobject}</h4>
     <div class="col-4" id="chooseSearch">
         <select name="chooseSearch" id="" class="form-select mb-3">
@@ -42,21 +42,21 @@
                 <thead>
                 <tr>
                     <th scope="col">IMG</th>
-                    <th scope="col">MÃ <br>
-                        <a href="/admin/product/data?sort=ma,asc" class="link-dark">⏫</a>
-                        <a href="/admin/product/data?sort=ma,desc" class="link-dark">⏬</a></th>
-                    <th scope="col">TÊN <br>
-                        <a href="/admin/product/data?sort=ten,asc" class="link-dark">⏫</a>
-                        <a href="/admin/product/data?sort=ten,desc" class="link-dark">⏬</a></th>
-                    <th scope="col">GIÁ <br>
-                        <a href="/admin/product/data?sort=gia,asc" class="link-dark">⏫</a>
-                        <a href="/admin/product/data?sort=gia,desc" class="link-dark">⏬</a></th>
-                    <th scope="col">NGÀY TẠO <br>
-                        <a href="/admin/product/data?sort=ngayTao,asc" class="link-dark">⏫</a>
-                        <a href="/admin/product/data?sort=ngayTao,desc" class="link-dark">⏬</a></th>
-                    <th scope="col">SỐ LƯỢNG <br>
-                        <a href="/admin/product/data?sort=soLuongTon,asc" class="link-dark">⏫</a>
-                        <a href="/admin/product/data?sort=soLuongTon,desc" class="link-dark">⏬</a></th>
+                    <th scope="col">MÃ
+                        <a href="/admin/product/data?sort=ma,asc" class="link-dark"><i class="bi bi-sort-alpha-up"></i></a>
+                        <a href="/admin/product/data?sort=ma,desc" class="link-dark"><i class="bi bi-sort-alpha-down-alt"></i></a></th>
+                    <th scope="col">TÊN
+                        <a href="/admin/product/data?sort=ten,asc" class="link-dark"><i class="bi bi-sort-alpha-up"></i></a>
+                        <a href="/admin/product/data?sort=ten,desc" class="link-dark"><i class="bi bi-sort-alpha-down-alt"></i></a></th>
+                    <th scope="col">GIÁ
+                        <a href="/admin/product/data?sort=gia,asc" class="link-dark"><i class="bi bi-sort-alpha-up"></i></a>
+                        <a href="/admin/product/data?sort=gia,desc" class="link-dark"><i class="bi bi-sort-alpha-down-alt"></i></a></th>
+                    <th scope="col">NGÀY TẠO
+                        <a href="/admin/product/data?sort=ngayTao,asc" class="link-dark"><i class="bi bi-sort-alpha-up"></i></a>
+                        <a href="/admin/product/data?sort=ngayTao,desc" class="link-dark"><i class="bi bi-sort-alpha-down-alt"></i></a></th>
+                    <th scope="col">SỐ LƯỢNG
+                        <a href="/admin/product/data?sort=soLuongTon,asc" class="link-dark"><i class="bi bi-sort-alpha-up"></i></a>
+                        <a href="/admin/product/data?sort=soLuongTon,desc" class="link-dark"><i class="bi bi-sort-alpha-down-alt"></i></a></th>
                     <th scope="col">Loại</th>
                     <th scope="col">ACTION</th>
                 </tr>
@@ -64,7 +64,7 @@
                 <tbody>
                 <c:forEach items="${products}" var="item">
                     <tr>
-                        <th scope="row"><img src="data:image/jpeg;base64,${item.getIMGByteStream()}" style="max-width: 200px" alt=""></th>
+                        <th scope="row"><img src="data:image/jpeg;base64,${ImageUlities.getImgByteBase64(item.img)}" style="max-width: 200px" alt=""></th>
                         <th>${item.ma}</th>
                         <td>${item.ten}</td>
                         <td>${item.gia}</td>

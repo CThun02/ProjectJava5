@@ -11,6 +11,7 @@ import java5.poly.assignment.service.ServiceI.ProductServiceI;
 import java5.poly.assignment.service.ServiceImpl.CategoryService;
 import java5.poly.assignment.service.ServiceImpl.ProductService;
 import java5.poly.assignment.ulities.CookieUlities;
+import java5.poly.assignment.ulities.ImageUlities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -22,31 +23,32 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
-import java.net.HttpCookie;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/product")
 public class ProductController {
     private ProductServiceI service;
-    private CategoryServicel servceCate;
+    private CategoryServicel serviceCate;
     private ServletContext context;
     private CookieUlities cookie;
+    private ImageUlities imageUlities;
     private int pageNumber=0;
     private int pageTotal;
     private int indexLocation;
 
     @Autowired
-    public ProductController(ProductService service, CategoryService servceCate, ServletContext context, CookieUlities cookie) {
+    public ProductController(ProductService service, CategoryService serviceCate, ServletContext context,
+                             CookieUlities cookie, ImageUlities imageUlities) {
         this.service = service;
-        this.servceCate = servceCate;
+        this.serviceCate = serviceCate;
         this.context = context;
         this.cookie = cookie;
+        this.imageUlities = imageUlities;
     }
 
 
@@ -55,9 +57,14 @@ public class ProductController {
         return new Product();
     }
 
+    @ModelAttribute(name = "ImageUlities")
+    public ImageUlities getImageUlities(){
+        return imageUlities;
+    }
+
     @ModelAttribute(name = "categories")
     public List<Category> getListCate(){
-        return servceCate.getList();
+        return serviceCate.getList();
     }
 
     @ModelAttribute("nameobject")
@@ -226,14 +233,12 @@ public class ProductController {
         if(pageNumber<0){
             pageNumber = pageTotal-1<=0?0:pageTotal-1;
         }
-        if(indexLocation==1){
-            return "redirect:/admin/product/searchbyprice?pricemin="+cookie.getCookies("priceSearchMin", req).getValue()
-                    +"&pricemax="+cookie.getCookies("priceSearchMax", req).getValue()+"&pagenumber="+pageNumber;
-        }else if(indexLocation==2){
-            return "redirect:/admin/product/searchbyname?namepro="+cookie.getCookies("nameSearch",req).getValue()+"&pagenumber="+pageNumber;
-        }else{
-            return "redirect:/admin/product/data?pagenumber="+pageNumber;
-        }
+        return switch (indexLocation) {
+            case 1 -> "redirect:/admin/product/searchbyprice?pricemin=" + cookie.getCookies("priceSearchMin", req).getValue()
+                    + "&pricemax=" + cookie.getCookies("priceSearchMax", req).getValue() + "&pagenumber=" + pageNumber;
+            case 2 -> "redirect:/admin/product/searchbyname?namepro=" + cookie.getCookies("nameSearch", req).getValue() + "&pagenumber=" + pageNumber;
+            default -> "redirect:/admin/product/data?pagenumber=" + pageNumber;
+        };
     }
 
     @GetMapping("/next")
@@ -242,22 +247,19 @@ public class ProductController {
         if(pageNumber==pageTotal){
             pageNumber=0;
         }
-        if(indexLocation==1){
-            return "redirect:/admin/product/searchbyprice?pricemin="+cookie.getCookies("priceSearchMin", req).getValue()
-                    +"&pricemax="+cookie.getCookies("priceSearchMax", req).getValue()+"&pagenumber="+pageNumber;
-        }else if(indexLocation==2){
-            return "redirect:/admin/product/searchbyname?namepro="+cookie.getCookies("nameSearch",req).getValue()+"&pagenumber="+pageNumber;
-        }else if(indexLocation==3){
-            return "redirect:/admin/product/filter?idcate="+cookie.getCookies("idcatefilter",req).getValue()+"&pagenumber="+pageNumber;
-        }else{
-            return "redirect:/admin/product/data?pagenumber="+pageNumber;
-        }
+        return switch (indexLocation) {
+            case 1 -> "redirect:/admin/product/searchbyprice?pricemin=" + cookie.getCookies("priceSearchMin", req).getValue()
+                    + "&pricemax=" + cookie.getCookies("priceSearchMax", req).getValue() + "&pagenumber=" + pageNumber;
+            case 2 -> "redirect:/admin/product/searchbyname?namepro=" + cookie.getCookies("nameSearch", req).getValue() + "&pagenumber=" + pageNumber;
+            case 3 -> "redirect:/admin/product/filter?idcate=" + cookie.getCookies("idcatefilter", req).getValue() + "&pagenumber=" + pageNumber;
+            default -> "redirect:/admin/product/data?pagenumber=" + pageNumber;
+        };
     }
 
     @GetMapping("/filter")
     public String filter(@RequestParam("idcate")String idcate, Model model, HttpServletResponse res){
         cookie.create("idcatefilter", idcate, res);
-        Category category = servceCate.getOne(UUID.fromString(idcate));
+        Category category = serviceCate.getOne(UUID.fromString(idcate));
         Page<Product> productData = service.findProductsByCategory(category, pageNumber, 5);
         pageTotal = productData.getTotalPages();
         pageNumber = pageNumber>=pageTotal?0:pageNumber;
