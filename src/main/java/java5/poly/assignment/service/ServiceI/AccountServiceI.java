@@ -11,4 +11,6 @@ public interface AccountServiceI {
     public void delete(Account account);
     public List<Account> getList();
     public Account getOne(String user);
+    public Account getAccountByEmail(String email);
+    public Boolean isAccountExist(String email);
 }

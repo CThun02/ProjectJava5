@@ -14,10 +14,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/product/data">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Order</a>
+                        <a class="nav-link" href="/admin/userorder/order">Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Notice</a>
@@ -35,7 +35,7 @@
         <h3 class="text-center brand">Diablog</h3>
         <ul class="nav-item ms-0 ps-0 mt-5">
             <a href="/admin/shop/data"><li>Khách hàng</li></a>
-            <a href="/admin/staff/data"><li>Hóa đơn</li></a>
+            <a href="/admin/userorder/data"><li>Hóa đơn</li></a>
             <a href="/admin/product/data"><li>Sản phẩm</li></a>
             <a href="/admin/category/data"><li>Loại sản phẩm</li></a>
             <a href=""><li>Sản phẩm</li></a>

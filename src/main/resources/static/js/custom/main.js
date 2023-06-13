@@ -18,9 +18,18 @@ window.onload = function (){
         let totalHeight = heightAdminFunction.offsetHeight + heightAminFooter.offsetHeight + heightAminHeader.offsetHeight
         navMenu.style.height = totalHeight;
     }
-    if(href!=="http://localhost:8080/"){
+    if(href!=="http://localhost:8080/" && !(href.includes("admin"))){
         let headerUserHome = document.getElementsByClassName("home-nav")[0];
         headerUserHome.classList.add("bg-cl-red");
+    }
+    if(href.includes("cart") || href.includes("order")){
+        let subtotal = document.getElementsByClassName("sub-total");
+        let total = 0;
+        for (let i = 0; i < subtotal.length; i++) {
+            total+= Number(subtotal[i].innerHTML);
+        }
+        let totalDom = document.getElementsByClassName("total")[0];
+        totalDom.innerHTML = "Total: " + parseFloat(total) + "$";
     }
 }
 

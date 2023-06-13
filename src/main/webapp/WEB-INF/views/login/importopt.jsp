@@ -3,32 +3,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Signin</title>
     <link rel="stylesheet" href="/css/custom/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-<section class="bg-login">
-    <section class="container login-form">
+<section class="bg-signin">
+    <section class="container signin-form">
         <div class="col-4 offset-md-4">
             <h3 class="text-center mb-5">
-                Login to continue
+                OTP For Resetpassword
             </h3>
-            <form action="/account/login" method="post">
-                <label for="account">Account</label>
-                <input class="form-control" type="text" id="account" name="userName" placeholder="Enter your account">
-                <label for="password">Password</label>
-                <input class="form-control" type="password" id="password" name="pass" placeholder="Enter your password">
-                <div>
-                    <input type="checkbox" class="form-check-input" name="" id="remem">
-                    <label for="remem">remember me?</label>
-                    <a href="/account/forgot" class="float-end link-dark">Forgot password?</a>
+            <form action="/account/importotp" method="post">
+                <label for="otp">OTP</label>
+                <input class="form-control" type="otp" id="otp" name="otp" placeholder="Enter your otp"/>
+                <div class="text-center text-danger">${mess}</div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn-pink-rgba btn-signin">Reset Password</button>
                 </div>
-                <div class="text-center">
-                    <p class="text-danger">${mess}</p>
-                    <button type="submit" class="btn-pink-rgba btn-login">Login</button>
-                </div>
-                <p class="text-center">or <a href="/account/signin" class="link-dark">sign in</a></p>
+                <p class="text-center">or <a href="/account/login" class="link-dark">Login</a></p>
             </form>
         </div>
     </section>

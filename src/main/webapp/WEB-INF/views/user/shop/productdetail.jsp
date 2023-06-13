@@ -9,13 +9,15 @@
                 <a href="" class="mt-5 mb-5 link-red">${product.category.ten}</a>
                 <h1 class="">${product.ten}</h1>
                 <h5>$${product.gia}</h5>
-                <h6>${product.soLuongTon}</h6>
+                <h6>Quantity: ${product.soLuongTon}</h6>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <form action="" method="get">
-                    <input type="number" value="1" name="" class="quantity form-control d-inline-block" id="">
+                <form action="/shop/addtocart" method="get">
+                    <input type="text" name="id" class="d-none" readonly value="${product.ID}" id="">
+                    <input type="number" value="1" name="quantity" class="quantity form-control d-inline-block" id="">
                     <button class="btn-bg-red ps-4 pe-4 pt-2 pb-2">ADD TO CART</button>
                 </form>
+                <p class="text-danger">${ErrorQuantity}</p>
             </div>
             <div>
                 <hr>

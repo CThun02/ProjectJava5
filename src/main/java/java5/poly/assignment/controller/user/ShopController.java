@@ -28,17 +28,24 @@ public class ShopController {
     private CategoryServicel serviceCate;
     private ImageUlities imgUlities;
     private CookieUlities cookieUlities;
+    private HttpServletResponse res;
+    private HttpServletRequest req;
     private int pageTotal=0;
     private int pageNumber=0;
     private int indexLocation = 0;
 
     @Autowired
-    public ShopController(ProductServiceI service, CategoryServicel serviceCate, ImageUlities imageUlities, CookieUlities cookieUlities) {
+    public ShopController(ProductServiceI service, CategoryServicel serviceCate, ImageUlities imgUlities,
+                          CookieUlities cookieUlities, HttpServletResponse res, HttpServletRequest req) {
         this.service = service;
         this.serviceCate = serviceCate;
-        this.imgUlities = imageUlities;
+        this.imgUlities = imgUlities;
         this.cookieUlities = cookieUlities;
+        this.res = res;
+        this.req = req;
     }
+
+
 
     @ModelAttribute("imgUlities")
     public ImageUlities setImageUlities(){
@@ -74,7 +81,7 @@ public class ShopController {
     }
 
     @GetMapping("/filter")
-    public String filter(@RequestParam("idcate")String idcate, Model model, HttpServletResponse res){
+    public String filter(@RequestParam("idcate")String idcate, Model model){
         cookieUlities.create("idcate", idcate, res);
         Category category = serviceCate.getOne(UUID.fromString(idcate));
         pageNumber=0;
@@ -89,7 +96,7 @@ public class ShopController {
     }
 
     @GetMapping("/searchbyname")
-    public String searchByName(@RequestParam("namepro") String namepro, Model model, HttpServletResponse res){
+    public String searchByName(@RequestParam("namepro") String namepro, Model model){
         cookieUlities.create("nameSearch", namepro, res);
         pageNumber=0;
         Page<Product> productPage = service.getProductsbyName(namepro, pageNumber, 6);
@@ -111,8 +118,23 @@ public class ShopController {
         return "user/index";
     }
 
+    @GetMapping("/addtocart")
+    public String addToCart(@RequestParam("id") UUID id, @RequestParam(name = "quantity", defaultValue = "1")int quantity, Model model){
+        Product product = service.getOne(id);
+        if(quantity>product.getSoLuongTon() || quantity<=0){
+            model.addAttribute("ErrorQuantity", "Vui lòng nhập số lượng lớn hơn 0 và bé hơn "+product.getSoLuongTon());
+            model.addAttribute("product", product);
+            model.addAttribute("viewusers", "shop/productdetail.jsp");
+            return "user/index";
+        }
+        Double price = Double.valueOf(product.getGia()+"");
+        String cartItem = "id:"+id+"price:"+price+"quantity:"+quantity;
+        cookieUlities.create("cartitem" + product.getTen(), cartItem, res);
+        return "redirect:/shop";
+    }
+
     @GetMapping("/previous")
-    public String previous(HttpServletRequest req){
+    public String previous(){
         String href = "redirect:/shop";
         pageNumber--;
         if(pageNumber<0){
@@ -123,17 +145,17 @@ public class ShopController {
                 href+="?sort=gia,desc";
                 break;
             case 2:
-                href+=("/filter?idcate="+cookieUlities.getCookies("idcate",req).getValue());
+                href+=("/filter?idcate="+cookieUlities.getCookie("idcate").getValue());
                 break;
             case 3:
-                href+=("/searchbyname?namepro="+cookieUlities.getCookies("nameSearch",req).getValue());
+                href+=("/searchbyname?namepro="+cookieUlities.getCookie("nameSearch").getValue());
                 break;
         }
         return href;
     }
 
     @GetMapping("/next")
-    public String next(HttpServletRequest req){
+    public String next(){
         String href = "redirect:/shop";
         pageNumber++;
         if(pageNumber==pageTotal){
@@ -144,10 +166,10 @@ public class ShopController {
                 href+="?sort=gia,desc";
                 break;
             case 2:
-                href+=("/filter?idcate="+cookieUlities.getCookies("idcate",req).getValue());
+                href+=("/filter?idcate="+cookieUlities.getCookie("idcate").getValue());
                 break;
             case 3:
-                href+=("/searchbyname?namepro="+cookieUlities.getCookies("nameSearch",req).getValue());
+                href+=("/searchbyname?namepro="+cookieUlities.getCookie("nameSearch").getValue());
                 break;
         }
         return href;

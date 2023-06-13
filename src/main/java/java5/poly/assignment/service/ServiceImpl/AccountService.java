@@ -23,7 +23,8 @@ public class AccountService implements AccountServiceI {
 
     @Override
     public Account update(Account account) {
-        return null;
+        repo.save(account);
+        return repo.save(account);
     }
 
     @Override
@@ -45,5 +46,15 @@ public class AccountService implements AccountServiceI {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Account getAccountByEmail(String email) {
+        return repo.findAccountByEmail(email);
+    }
+
+    @Override
+    public Boolean isAccountExist(String email) {
+        return repo.findAccountByEmail(email)==null?false:true;
     }
 }

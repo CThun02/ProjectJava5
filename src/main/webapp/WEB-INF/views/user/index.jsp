@@ -21,9 +21,9 @@
             </ul>
         </div>
         <div class="d-inline-block icon-action">
-            <a href="" class="ps-1 pe-1"><i class="bi bi-cart3"></i></a>
+            <a href="/cart" class="ps-1 pe-1"><i class="bi bi-cart3"></i></a>
             <a href="" class="ps-1 pe-1"><i class="bi bi-person-check"></i></a>
-            <a href="/account/login" class="ps-1 pe-1">Login <i class="bi bi-eject"></i></a>
+            <a href="/account/login" class="ps-1 pe-1"><i class="bi bi-eject"></i></a>
         </div>
     </div>
 </header>

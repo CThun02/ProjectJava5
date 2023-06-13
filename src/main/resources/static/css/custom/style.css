@@ -10,7 +10,8 @@ ul{
 }
 /*common*/
 h5{
-    font-weight: 600;
+    font-weight: 600!important;
+    font-size: 20px;
 }
 span{
     font-weight: bold;
@@ -43,6 +44,8 @@ span{
 }
 .btn-bg-red:hover {
     opacity: 0.7;
+    color: white!important;
+    font-weight: 600;
 }
 .bg-cl-white{
     background-color: white;
@@ -198,6 +201,7 @@ span{
 }
 
 /*shop*/
+.cart,
 .productdetail,
 .shop{
     padding-top: 160px;

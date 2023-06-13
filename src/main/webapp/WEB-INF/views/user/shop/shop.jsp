@@ -29,7 +29,7 @@
                             <span class="mt-3">${item.category.ten}</span>
                             <h5>${item.ten}</h5>
                             <span class="mt-3">${item.gia} $</span> <br>
-                            <a href=""><i class="bi bi-cart-plus pe-1"></i></a>
+                            <a href="/shop/addtocart?id=${item.ID}"><i class="bi bi-cart-plus pe-1"></i></a>
                             <a href=""><i class="bi bi-heart"></i></a>
                         </li>
                     </c:forEach>

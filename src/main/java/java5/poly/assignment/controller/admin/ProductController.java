@@ -234,9 +234,9 @@ public class ProductController {
             pageNumber = pageTotal-1<=0?0:pageTotal-1;
         }
         return switch (indexLocation) {
-            case 1 -> "redirect:/admin/product/searchbyprice?pricemin=" + cookie.getCookies("priceSearchMin", req).getValue()
-                    + "&pricemax=" + cookie.getCookies("priceSearchMax", req).getValue() + "&pagenumber=" + pageNumber;
-            case 2 -> "redirect:/admin/product/searchbyname?namepro=" + cookie.getCookies("nameSearch", req).getValue() + "&pagenumber=" + pageNumber;
+            case 1 -> "redirect:/admin/product/searchbyprice?pricemin=" + cookie.getCookie("priceSearchMin").getValue()
+                    + "&pricemax=" + cookie.getCookie("priceSearchMax").getValue() + "&pagenumber=" + pageNumber;
+            case 2 -> "redirect:/admin/product/searchbyname?namepro=" + cookie.getCookie("nameSearch").getValue() + "&pagenumber=" + pageNumber;
             default -> "redirect:/admin/product/data?pagenumber=" + pageNumber;
         };
     }
@@ -248,10 +248,10 @@ public class ProductController {
             pageNumber=0;
         }
         return switch (indexLocation) {
-            case 1 -> "redirect:/admin/product/searchbyprice?pricemin=" + cookie.getCookies("priceSearchMin", req).getValue()
-                    + "&pricemax=" + cookie.getCookies("priceSearchMax", req).getValue() + "&pagenumber=" + pageNumber;
-            case 2 -> "redirect:/admin/product/searchbyname?namepro=" + cookie.getCookies("nameSearch", req).getValue() + "&pagenumber=" + pageNumber;
-            case 3 -> "redirect:/admin/product/filter?idcate=" + cookie.getCookies("idcatefilter", req).getValue() + "&pagenumber=" + pageNumber;
+            case 1 -> "redirect:/admin/product/searchbyprice?pricemin=" + cookie.getCookie("priceSearchMin").getValue()
+                    + "&pricemax=" + cookie.getCookie("priceSearchMax").getValue() + "&pagenumber=" + pageNumber;
+            case 2 -> "redirect:/admin/product/searchbyname?namepro=" + cookie.getCookie("nameSearch").getValue() + "&pagenumber=" + pageNumber;
+            case 3 -> "redirect:/admin/product/filter?idcate=" + cookie.getCookie("idcatefilter").getValue() + "&pagenumber=" + pageNumber;
             default -> "redirect:/admin/product/data?pagenumber=" + pageNumber;
         };
     }
