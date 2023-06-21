@@ -65,6 +65,7 @@ public class AccountController {
             model.addAttribute("mess", "Sai tai khoan hoạc mat khau!");
             return "login/login";
         }else{
+            session.setAttribute("account", account);
             if(account.getPass().equalsIgnoreCase(pass)){
                 if(account.getADM()){
                     return "redirect:/admin/product/data";

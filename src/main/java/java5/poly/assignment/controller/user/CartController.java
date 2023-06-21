@@ -3,6 +3,7 @@ package java5.poly.assignment.controller.user;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java5.poly.assignment.model.*;
 import java5.poly.assignment.service.ServiceI.AccountServiceI;
 import java5.poly.assignment.service.ServiceI.OrderDetailServiceI;
@@ -32,11 +33,12 @@ public class CartController {
     private ProductServiceI productService;
     private ImageUlities imgUlities;
     private AccountServiceI accountService;
+    private HttpSession session;
 
     @Autowired
     public CartController(CookieUlities cookieUlities, HttpServletResponse res, HttpServletRequest req,
                           ProductServiceI productService, ImageUlities imgUlities, UserOrderServiceI service,
-                          OrderDetailServiceI orderDetailService, AccountServiceI accountService) {
+                          OrderDetailServiceI orderDetailService, AccountServiceI accountService, HttpSession session) {
         this.cookieUlities = cookieUlities;
         this.res = res;
         this.req = req;
@@ -45,6 +47,13 @@ public class CartController {
         this.service = service;
         this.orderDetailService = orderDetailService;
         this.accountService = accountService;
+        this.session = session;
+    }
+
+    @ModelAttribute("ordersbill")
+    public List<UserOrder> getOrdersBill(){
+        Account account = (Account) session.getAttribute("account");
+        return service.getUserOrderByAccount(account);
     }
 
     @ModelAttribute("orders")
@@ -135,7 +144,6 @@ public class CartController {
 
     @PostMapping("/payment")
     public String payment(@ModelAttribute("userorder")UserOrder userOrder, @ModelAttribute("orders")List<OrderDetail> orderDetails){
-        //Mua hàng không cần đăng nhập
         Cookie cookie = cookieUlities.getCookie("user");
         if(cookie!=null){
             userOrder.setAccount(accountService.getOne(cookie.getValue()));
@@ -149,6 +157,24 @@ public class CartController {
             product.setSoLuongTon(product.getSoLuongTon()-orderDetail.getSoluong());
             productService.update(product);
         }
-        return "";
+        List<Cookie> cookies = cookieUlities.getCookies("cartitem", req);
+        if(cookies!=null){
+            for (Cookie cookie1: cookies) {
+                    Cookie cookieshop = cookie1;
+                    cookieUlities.deleteCookieByNameNPath(cookie1.getName(), "/cart");
+                    cookieUlities.deleteCookieByNameNPath(cookieshop.getName(), "/shop");
+            }
+        }
+        return "/cart";
+    }
+
+    @GetMapping("/detail")
+    public String adminDetail(Model model, @RequestParam("id") UUID id){
+        UserOrder userOrder = service.getOne(id);
+        List<OrderDetail> orderDetails = orderDetailService.getOrderDetailByUserOrder(userOrder);
+        model.addAttribute("userorder", userOrder);
+        model.addAttribute("orderdetails", orderDetails);
+        model.addAttribute("viewusers", "cart/detail.jsp");
+        return "user/index";
     }
 }

@@ -30,7 +30,7 @@ public class CookieUlities {
     public void createNSetPath(String name, String value, String path){
         Cookie cookie = new Cookie(name, value);
         Cookie cookie1 = getCookie(name);
-        if (cookie1!=null){
+        if (cookie1!=null && cookie1.getValue().contains("cart")){
             int indexIdQuantityCookie = value.lastIndexOf(":");
             int quantity = getQuantityValue(cookie1.getValue()) + getQuantityValue(cookie.getValue());
             cookie.setValue(cookie.getValue().substring(0, indexIdQuantityCookie+1)+quantity);

@@ -149,11 +149,10 @@ public class UserOrderController {
     public String update(@ModelAttribute("userorder")UserOrder userOrder, @RequestParam("ngayTao")LocalDate ngayTao
                         , @RequestParam(name = "productorders", defaultValue = "")List<UUID> productOrders){
         UserOrder check = service.getOne(userOrder.getID());
-        if(check.getAccount()!=null){
+        if(check.getAccount()==null){
             userOrder.setTrangThai(-1);
         }else{
             userOrder.setTrangThai(1);
-
         }
         userOrder.setAccount(check.getAccount());
         userOrder.setNgayTao(ngayTao);
@@ -194,4 +193,5 @@ public class UserOrderController {
         service.delete(userOrder);
         return "redirect:/admin/userorder/data";
     }
+
 }

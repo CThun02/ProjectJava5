@@ -1,5 +1,6 @@
 package java5.poly.assignment.service.ServiceI;
 
+import java5.poly.assignment.model.Account;
 import java5.poly.assignment.model.UserOrder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,6 @@ public interface UserOrderServiceI {
     public List<UserOrder> getList();
     public UserOrder getOne(UUID ID);
     public List<UserOrder> getUserOrderByTrangThai(int tt);
+    public List<UserOrder> getUserOrderByAccount(Account account);
 
 }

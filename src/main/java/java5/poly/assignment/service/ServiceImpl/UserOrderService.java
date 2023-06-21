@@ -1,5 +1,6 @@
 package java5.poly.assignment.service.ServiceImpl;
 
+import java5.poly.assignment.model.Account;
 import java5.poly.assignment.model.UserOrder;
 import java5.poly.assignment.repository.RepoI.UserOrderRepositoryDAO;
 import java5.poly.assignment.service.ServiceI.UserOrderServiceI;
@@ -45,5 +46,10 @@ public class UserOrderService implements UserOrderServiceI {
     @Override
     public List<UserOrder> getUserOrderByTrangThai(int tt) {
         return repo.getUserOrderByTrangThai(tt);
+    }
+
+    @Override
+    public List<UserOrder> getUserOrderByAccount(Account account) {
+        return repo.getUserOrderByAccount(account);
     }
 }

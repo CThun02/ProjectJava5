@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <section class="col-8 offset-md-2 pb-5 cart">
     <div class="p-5 bg-cl-white">
         <h1 class="title">Cart</h1>
@@ -37,6 +38,33 @@
         <br>
         <div class="text-end">
             <a href="/cart/checkout" class="btn-bg-red p-3" style="text-decoration: none">PROCEED TO CHECKOUT</a>
+        </div>
+        <div class="mt-5">
+            <span>Đã đặt</span>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NGƯỜI ĐẶT</th>
+                    <th scope="col">NGƯỜI NHẬN</th>
+                    <th scope="col">NGÀY TẠO</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${ordersbill}" var="item">
+                    <tr>
+                        <th scope="row">${item.ID}</th>
+                        <td>${item.nguoiDat}</td>
+                        <td>${item.nguoiNhan}</td>
+                        <td>${item.ngayTao}</td>
+                        <td>
+                            <a href="/cart/detail?id=${item.ID}" class="btn btn-success">REVIEW</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

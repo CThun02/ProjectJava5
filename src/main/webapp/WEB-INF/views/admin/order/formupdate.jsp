@@ -3,9 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="col-10 offset-md-1">
     <h4 class="text-center mb-5">Edit ${nameobject}</h4>
-    <form:form action="/admin/userorder/update" method="post" modelAttribute="userorder">
         <div class="row">
             <div class="col-6">
+                <form:form action="/admin/userorder/update" method="post" modelAttribute="userorder">
                     <form:input class="form-control" type="hidden" id="nguoiDat" placeholder="Enter your name" path="ID"/>
                     <label for="nguoiDat"><span>Người đặt</span></label>
                     <form:input class="form-control" type="text" id="nguoiDat" placeholder="Enter your name" path="nguoiDat"/>
@@ -22,6 +22,7 @@
                     <div class="col-12 text-center mt-3">
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
+                </form:form>
             </div>
             <div class="col-6">
                 <span>Customer Order</span>
@@ -74,5 +75,4 @@
                 </table>
             </div>
         </div>
-    </form:form>
 </div>
